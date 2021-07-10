@@ -7,16 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.messenger.ajay.databinding.ActivityMobileNumberBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MobileNumberActivity extends AppCompatActivity {
 
     ActivityMobileNumberBinding binding;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityMobileNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        auth=FirebaseAuth.getInstance();
+        if(auth.getCurrentUser()!=null){
+            startActivity(new Intent(MobileNumberActivity.this,MainActivity.class));
+            finish();
+        }
 
         getSupportActionBar().hide();
 
