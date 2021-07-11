@@ -10,12 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Messenger"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfileSetUpActivity"></activity>
+        <activity android:name=".Activities.ChatActivity"></activity>
+        <activity android:name=".Activities.ProfileSetUpActivity" />
         <activity
-            android:name=".OTP_Activity"
+            android:name=".Activities.OTP_Activity"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name=".MobileNumberActivity"
+            android:name=".Activities.MobileNumberActivity"
             android:windowSoftInputMode="stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activities.MainActivity" />
     </application>
 
 </manifest>

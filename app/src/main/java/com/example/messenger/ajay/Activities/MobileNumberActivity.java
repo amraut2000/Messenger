@@ -1,4 +1,4 @@
-package com.example.messenger.ajay;
+package com.example.messenger.ajay.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
