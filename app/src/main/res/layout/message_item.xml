@@ -5,8 +5,8 @@
     android:id="@+id/msgItemLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f9f9f9"
-    android:padding="8dp">
+    android:background="?selectableItemBackground"
+    android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImage"

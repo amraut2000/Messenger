@@ -3,17 +3,15 @@ package com.example.messenger.ajay.Models;
 public class Message {
     private String messageId,message,senderId;
     private long timestamp;
-    private int feeling;
+    private int feeling=-1;
 
     public Message() {
     }
 
-    public Message(String messageId, String message, String senderId, long timestamp, int feeling) {
-        this.messageId = messageId;
+    public Message(String message, String senderId, long timestamp) {
         this.message = message;
         this.senderId = senderId;
         this.timestamp = timestamp;
-        this.feeling = feeling;
     }
 
     public String getMessageId() {

@@ -14,8 +14,17 @@ import com.example.messenger.ajay.Activities.ChatActivity;
 import com.example.messenger.ajay.Models.User;
 import com.example.messenger.ajay.R;
 import com.example.messenger.ajay.databinding.MessageItemBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHolder> {
     ArrayList<User> users;
@@ -36,6 +45,33 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
     @Override
     public void onBindViewHolder(@NonNull UsersAdapter.UsersViewHolder holder, int position) {
         User user=users.get(position);
+
+        String senderId= FirebaseAuth.getInstance().getUid();
+        String senderRoom=senderId+ user.getUserId();
+
+        FirebaseDatabase.getInstance().getReference().child("Chats").child(senderRoom)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            String lastMsg=snapshot.child("lastMsg").getValue(String.class);
+                            long time=snapshot.child("lastMsgTime").getValue(Long.class);
+                            SimpleDateFormat dateFormat=new SimpleDateFormat("hh:mm a");
+                            holder.binding.msgTime.setText(dateFormat.format(new Date(time)));
+                            holder.binding.lastMessage.setText(lastMsg);
+
+                        }
+                        else{
+                            holder.binding.lastMessage.setText("Tap to chat");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+
         holder.binding.userName.setText(user.getName());
         Glide.with(context).load(user.getProfileImage())
                 .placeholder(R.drawable.avatar)

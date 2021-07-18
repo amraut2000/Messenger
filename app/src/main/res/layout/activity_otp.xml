@@ -65,18 +65,12 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:itemBackground="@color/grey"
+                android:focusableInTouchMode="true"
                 android:textColor="@android:color/white"
                 app:OtpItemCount="6"
                 app:OtpLineColor="@color/green"
                 app:OtpViewType="line" />
 
-            <Button
-                android:id="@+id/verify_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/teal_200"
-                android:text="Verify" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
